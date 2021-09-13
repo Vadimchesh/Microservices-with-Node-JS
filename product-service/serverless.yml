@@ -13,6 +13,13 @@ provider:
   stage: dev
   region: eu-west-1
 
+environment:
+  PG_HOST: products.clbzxnessjuh.eu-west-1.rds.amazonaws.com
+  PG_PORT: 5432
+  PG_DB: products 
+  PG_USER: postgres
+  PG_PASS: ShvFNAexlCFcopXtsR8x
+
 functions:
   getProduct:
     handler: src/getProductById.handler

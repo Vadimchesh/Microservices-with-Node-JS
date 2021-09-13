@@ -6,6 +6,7 @@
   "dependencies": {
     "aws-lambda": "^1.0.6",
     "axios": "^0.21.1",
+    "pg": "^8.7.1",
     "webpack": "^5.51.1"
   },
   "devDependencies": {

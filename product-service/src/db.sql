@@ -25,3 +25,5 @@ insert into stocks(product_id, count) values
     ('9d203608-c156-4a2a-8b97-327e273c9221', '1'),
     ('ea2e8c00-2a40-4aa9-af24-202a3aed5040', '22'),
     ('f3851819-59da-4eb8-b2d6-510d906a14c5', '6');
+
+select products.*, stocks.count from products join stocks on id = product_id

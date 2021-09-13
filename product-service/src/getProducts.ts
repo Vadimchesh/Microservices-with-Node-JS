@@ -1,7 +1,9 @@
 import { HttpResponse } from './types';
 import { respondJson } from './responsHelper';
 import products from './productList.json';
+import { getProductsFromDB } from './dbHelper';
 
 export async function handler(): HttpResponse {
-  return respondJson(products, 200);
+  const result = await getProductsFromDB();
+  return respondJson(result, 200);
 }
