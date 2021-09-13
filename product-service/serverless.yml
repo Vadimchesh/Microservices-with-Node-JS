@@ -39,7 +39,7 @@ functions:
           cors: true
           method: get
   postProduct:
-    handler: src/postProducts.handler
+    handler: src/postProduct.handler
     events:
       - http:
           path: /product

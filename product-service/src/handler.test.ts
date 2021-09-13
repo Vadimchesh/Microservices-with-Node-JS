@@ -1,4 +1,4 @@
-import { handler as getProductById } from './postProductById';
+import { handler as getProductById } from './getProductById';
 import { handler as getProducts } from './getProducts';
 import products from './productList.json';
 import { respondJson } from './responsHelper';

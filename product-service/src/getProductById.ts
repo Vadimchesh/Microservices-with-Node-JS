@@ -1,6 +1,6 @@
 import { HttpEventRequest, HttpResponse, HttpResponseBody } from './types';
 import { respondJson } from './responsHelper';
-import { getProductByIdFromDB } from './dbHelper';
+import { getProductByIdFromDB } from './repository';
 
 export async function handler(
   event: HttpEventRequest<{ id: string }>

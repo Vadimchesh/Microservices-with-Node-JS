@@ -1,7 +1,7 @@
 import { Client } from 'pg';
 
 import { dbConfig } from './dbConnection';
-import { HttpResponseBody } from './types';
+import { Body } from './types';
 
 export const DBConnection = async () => {
   try {
@@ -45,15 +45,16 @@ export const getProductByIdFromDB = async (id: string) => {
   }
 };
 
-export const addProductInDB = async (product: Omit<HttpResponseBody, 'id'>) => {
+export const addProductInDB = async (product: Body) => {
   const client = await DBConnection();
+
   try {
     await client.query('BEGIN');
-
     const { rows: newProduct } = await client.query(
-      'INSERT INTO products(title, description, price, image) values ($1, $2, $3, $4, $5) RETURNING id',
+      'INSERT INTO products(title, description, price, image) values ($1, $2, $3, $4) RETURNING id',
       [product.title, product.description, product.price, product.image]
     );
+    
     const { rows: result } = await client.query(
       'INSERT INTO stocks(product_id, count) values ($1, $2) RETURNING product_id',
       [newProduct[0].id, product.count]
