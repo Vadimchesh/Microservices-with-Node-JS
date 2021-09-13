@@ -1,6 +1,7 @@
 service: product-service
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
 
@@ -13,12 +14,14 @@ provider:
   stage: dev
   region: eu-west-1
 
+useDotenv: true
+
 environment:
-  PG_HOST: products.clbzxnessjuh.eu-west-1.rds.amazonaws.com
-  PG_PORT: 5432
-  PG_DB: products 
-  PG_USER: postgres
-  PG_PASS: ShvFNAexlCFcopXtsR8x
+  PG_HOST: ${env:PG_HOST}
+  PG_PORT: ${env:PG_PORT}
+  PG_DB: ${env:PG_DB}
+  PG_USER: ${env:PG_USER}
+  PG_PASS: ${env:PG_PASS}
 
 functions:
   getProduct:
@@ -35,3 +38,10 @@ functions:
           path: /product
           cors: true
           method: get
+  postProduct:
+    handler: src/postProducts.handler
+    events:
+      - http:
+          path: /product
+          cors: true
+          method: post

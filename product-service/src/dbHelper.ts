@@ -1,5 +1,7 @@
 import { Client } from 'pg';
+
 import { dbConfig } from './dbConnection';
+import { HttpResponseBody } from './types';
 
 export const DBConnection = async () => {
   try {
@@ -43,7 +45,7 @@ export const getProductByIdFromDB = async (id: string) => {
   }
 };
 
-export const addProductInDB = async (product: any) => {
+export const addProductInDB = async (product: Omit<HttpResponseBody, 'id'>) => {
   const client = await DBConnection();
   try {
     await client.query('BEGIN');
