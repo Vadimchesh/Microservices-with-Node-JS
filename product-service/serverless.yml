@@ -1,6 +1,7 @@
 service: product-service
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
 
@@ -12,6 +13,15 @@ provider:
   runtime: nodejs12.x
   stage: dev
   region: eu-west-1
+
+useDotenv: true
+
+environment:
+  PG_HOST: ${env:PG_HOST}
+  PG_PORT: ${env:PG_PORT}
+  PG_DB: ${env:PG_DB}
+  PG_USER: ${env:PG_USER}
+  PG_PASS: ${env:PG_PASS}
 
 functions:
   getProduct:
@@ -28,3 +38,10 @@ functions:
           path: /product
           cors: true
           method: get
+  postProduct:
+    handler: src/postProduct.handler
+    events:
+      - http:
+          path: /product
+          cors: true
+          method: post

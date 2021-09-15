@@ -10,9 +10,12 @@ export type HttpEventRequest<T = null> = Omit<
 export type HttpResponse = Promise<APIGatewayProxyResult>;
 
 export type HttpResponseBody = {
-  count: number;
-  description: string;
   id: string;
-  price: number;
   title: string;
+  description: string;
+  price: number;
+  image: string;
+  count: number;
 };
+
+export type Body = Omit<HttpResponseBody, 'id'>;

@@ -1,6 +1,6 @@
 import { HttpEventRequest, HttpResponse, HttpResponseBody } from './types';
-import products from './productList.json';
 import { respondJson } from './responsHelper';
+import { getProductByIdFromDB } from './repository';
 
 export async function handler(
   event: HttpEventRequest<{ id: string }>
@@ -9,9 +9,7 @@ export async function handler(
 
   if (!idParametr) return respondJson({ message: 'No product' }, 400);
 
-  const product = (products as HttpResponseBody[]).find(
-    ({ id }) => id === idParametr
-  );
+  const product = getProductByIdFromDB(idParametr);
 
   if (!product) return respondJson({ message: 'No product' }, 400);
 
