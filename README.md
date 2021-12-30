@@ -1,2 +1,2 @@
 # Microservices-with-Node-JS
-# Task 4
+Serverless, AWS Lambda, Typescript, PostgreSQL
